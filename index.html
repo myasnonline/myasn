@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* Gaya Umum */
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -16,33 +15,28 @@
             overflow: hidden;
         }
 
-        /* Container Utama */
         .main-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start; /* Dorong konten ke atas */
+            justify-content: flex-start; 
             height: 100%;
             background: linear-gradient(135deg, #007bff 0%, #00bfff 100%);
             position: relative;
             overflow: hidden;
-            /* DIHAPUS: padding-top: 50px; */ /* Menghilangkan padding agar menempel ke atas */
         }
 
-        /* Efek Peta Indonesia (Placeholder) */
         .map-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            /* Menggunakan SVG pattern untuk efek titik-titik peta */
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><defs><pattern id="dots" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="rgba(255, 255, 255, 0.3)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23dots)"/></svg>');
             opacity: 0.6;
             z-index: 1;
         }
         
-        /* Konten Halaman Depan - Menggunakan Flexbox untuk tata letak vertikal */
         .content-wrapper {
             position: relative;
             z-index: 10;
@@ -54,11 +48,10 @@
             max-width: 90%;
         }
         
-        /* Bagian Teks Sambutan */
         .welcome-text {
             color: white;
-            margin-top: 0; /* Pastikan tidak ada margin di atas */
-            margin-bottom: 50px; /* Jarak yang lebih kecil ke logo BKN */
+            margin-top: 0;
+            margin-bottom: 50px;
             transition: opacity 0.5s, transform 0.5s;
         }
         
@@ -66,7 +59,7 @@
             font-size: 32px;
             margin-bottom: 5px;
             font-weight: normal;
-            margin-top: 20px; /* Tambahkan margin agar tidak terlalu mepet ke ujung layar */
+            margin-top: 20px; 
         }
 
         .welcome-text .asn-digital {
@@ -93,7 +86,6 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        /* Container Interaksi (Wadah Logo dan Menu) */
         .interaction-container {
             position: relative;
             width: 150px; 
@@ -104,12 +96,10 @@
             transition: transform 0.5s ease-out;
         }
         
-        /* Logika Memperbesar Lingkaran dan Menu */
         .interaction-container:hover {
             transform: scale(1.2); 
         }
 
-        /* Logo BKN Tengah */
         .bkn-logo-center {
             width: 150px;
             height: 150px;
@@ -129,13 +119,12 @@
             height: auto;
         }
         
-        /* Menu Sirkular CONTAINER */
         .circular-menu {
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%; 
-            height: 100%; 
+            width: 90%; 
+            height: 20%; 
             display: flex;
             align-items: center;
             justify-content: center;
@@ -144,13 +133,11 @@
             pointer-events: none; 
         }
         
-        /* Logika HOVER untuk menampilkan menu */
         .interaction-container:hover .circular-menu {
             opacity: 1;
             pointer-events: auto;
         }
 
-        /* Setiap Item Menu */
         .menu-item {
             position: absolute;
             width: 120px;
@@ -174,7 +161,6 @@
             z-index: 15; 
         }
         
-        /* Posisi Menu - Mengaktifkan animasi saat hover */
         .interaction-container:hover .menu-item {
             opacity: 1;
             transform: scale(1);
@@ -183,10 +169,10 @@
         
         .interaction-container:hover .menu-item:nth-child(1) { 
             top: calc(50% - 140px); 
-            left: calc(50% - 150px); 
+            left: calc(80% - 100px); 
         }
 
-        .interaction-container:hover .menu-item:nth-child(2) { 
+        /* .interaction-container:hover .menu-item:nth-child(2) { 
             top: calc(50% - 140px); 
             left: calc(50% + 30px); 
         }
@@ -194,17 +180,14 @@
         .interaction-container:hover .menu-item:nth-child(3) { 
             top: calc(50% + 60px);    
             left: calc(80% - 100px);   
-        }
+        } */
         
-        /* ---------------------------------- */
         
-        /* Ikon Menu */
         .menu-item i {
             font-size: 30px;
             margin-bottom: 5px;
         }
         
-        /* Privacy/Terms */
         .privacy-terms {
             position: absolute;
             bottom: 10px;
@@ -236,14 +219,14 @@
                         <i class="fas fa-globe"></i>
                         Login
                     </a>
-                    <a href="#" class="menu-item casn">
+                    <!-- <a href="#" class="menu-item casn">
                         <i class="fas fa-university"></i>
                         Layanan Seleksi CASN
                     </a>
                     <a href="#" class="menu-item pendukung">
                         <i class="fas fa-cog"></i>
                         Layanan Pendukung
-                    </a>
+                    </a> -->
                 </div>
 
                 <div class="bkn-logo-center">
