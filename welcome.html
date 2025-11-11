@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASN Digital - BKN Hover Menu (Teks Menempel Penuh Ke Atas)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* Gaya Umum */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Container Utama */
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; /* Dorong konten ke atas */
+            height: 100%;
+            background: linear-gradient(135deg, #007bff 0%, #00bfff 100%);
+            position: relative;
+            overflow: hidden;
+            /* DIHAPUS: padding-top: 50px; */ /* Menghilangkan padding agar menempel ke atas */
+        }
+
+        /* Efek Peta Indonesia (Placeholder) */
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Menggunakan SVG pattern untuk efek titik-titik peta */
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><defs><pattern id="dots" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="rgba(255, 255, 255, 0.3)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23dots)"/></svg>');
+            opacity: 0.6;
+            z-index: 1;
+        }
+        
+        /* Konten Halaman Depan - Menggunakan Flexbox untuk tata letak vertikal */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+            text-align: center;
+            width: 100%; 
+            max-width: 90%;
+        }
+        
+        /* Bagian Teks Sambutan */
+        .welcome-text {
+            color: white;
+            margin-top: 0; /* Pastikan tidak ada margin di atas */
+            margin-bottom: 50px; /* Jarak yang lebih kecil ke logo BKN */
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        
+        .welcome-text h2 {
+            font-size: 32px;
+            margin-bottom: 5px;
+            font-weight: normal;
+            margin-top: 20px; /* Tambahkan margin agar tidak terlalu mepet ke ujung layar */
+        }
+
+        .welcome-text .asn-digital {
+            font-weight: bold;
+            font-size: 36px;
+            color: #ffcc00;
+        }
+
+        .welcome-text p {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .welcome-text button {
+            background-color: white;
+            color: #007bff;
+            font-weight: bold;
+            padding: 10px 30px;
+            border: none;
+            border-radius: 50px;
+            cursor: default;
+            font-size: 16px;
+            margin-top: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Container Interaksi (Wadah Logo dan Menu) */
+        .interaction-container {
+            position: relative;
+            width: 150px; 
+            height: 150px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.5s ease-out;
+        }
+        
+        /* Logika Memperbesar Lingkaran dan Menu */
+        .interaction-container:hover {
+            transform: scale(1.2); 
+        }
+
+        /* Logo BKN Tengah */
+        .bkn-logo-center {
+            width: 150px;
+            height: 150px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 20; 
+            transition: transform 0.3s;
+        }
+        
+        .bkn-logo-center img {
+            width: 100px; 
+            height: auto;
+        }
+        
+        /* Menu Sirkular CONTAINER */
+        .circular-menu {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; 
+            height: 100%; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none; 
+        }
+        
+        /* Logika HOVER untuk menampilkan menu */
+        .interaction-container:hover .circular-menu {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Setiap Item Menu */
+        .menu-item {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            font-size: 14px;
+            opacity: 0;
+            transform: scale(0.1);
+            transition: opacity 0.5s, transform 0.5s;
+            z-index: 15; 
+        }
+        
+        /* Posisi Menu - Mengaktifkan animasi saat hover */
+        .interaction-container:hover .menu-item {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        
+        .interaction-container:hover .menu-item:nth-child(1) { 
+            top: calc(50% - 140px); 
+            left: calc(50% - 150px); 
+        }
+
+        .interaction-container:hover .menu-item:nth-child(2) { 
+            top: calc(50% - 140px); 
+            left: calc(50% + 30px); 
+        }
+
+        .interaction-container:hover .menu-item:nth-child(3) { 
+            top: calc(50% + 60px);    
+            left: calc(80% - 100px);   
+        }
+        
+        /* ---------------------------------- */
+        
+        /* Ikon Menu */
+        .menu-item i {
+            font-size: 30px;
+            margin-bottom: 5px;
+        }
+        
+        /* Privacy/Terms */
+        .privacy-terms {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+            z-index: 10;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="map-overlay"></div>
+        
+        <div class="content-wrapper">
+            
+            <div id="welcomeText" class="welcome-text">
+                <h2>Selamat Datang di <span class="asn-digital">ASN DIGITAL</span></h2>
+                <p>Platform Digital Manajemen ASN Terpadu</p>
+                <button>Badan Kepegawaian Negara</button>
+            </div>
+
+            <div id="interactionContainer" class="interaction-container">
+                
+                <div class="circular-menu">
+                    <a href="login.html" class="menu-item login">
+                        <i class="fas fa-globe"></i>
+                        Login
+                    </a>
+                    <a href="#" class="menu-item casn">
+                        <i class="fas fa-university"></i>
+                        Layanan Seleksi CASN
+                    </a>
+                    <a href="#" class="menu-item pendukung">
+                        <i class="fas fa-cog"></i>
+                        Layanan Pendukung
+                    </a>
+                </div>
+
+                <div class="bkn-logo-center">
+                    <img src="logo-bkn.png" alt="Logo BKN"> 
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="privacy-terms">
+            Privacy - Terms
+        </div>
+
+    </div>
+
+    <script>
+        const container = document.getElementById('interactionContainer');
+        const welcomeText = document.getElementById('welcomeText');
+
+        container.addEventListener('mouseenter', () => {
+            welcomeText.style.opacity = '0';
+            welcomeText.style.transform = 'translateY(-20px)';
+            welcomeText.style.pointerEvents = 'none';
+        });
+
+        container.addEventListener('mouseleave', () => {
+            welcomeText.style.opacity = '1';
+            welcomeText.style.transform = 'translateY(0)';
+            welcomeText.style.pointerEvents = 'auto';
+        });
+    </script>
+
+</body>
+</html>

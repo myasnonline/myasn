@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="id"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login ASN - MyASN</title>
   <style>
     body {
@@ -66,8 +64,8 @@
     <img src="logo.png" alt="Logo MyASN" class="logo">
     <h1>Login ASN Berdasarkan NIP</h1>
     <form id="loginForm">
-      <input type="text" id="nip" placeholder="Masukkan NIP" required />
-      <input type="password" id="password" placeholder="Masukkan Password" required />
+      <input type="text" id="nip" placeholder="Masukkan NIP" required="">
+      <input type="password" id="password" placeholder="Masukkan Password" required="">
       <button type="submit">Login</button>
       <div class="error" id="errorMsg"></div>
     </form>
@@ -80,6 +78,7 @@
     // 🔹 Masukin Data login ASN
     const dataASN = {
       "12345678910111213": { nama: "Saddam Fahrezi", password: "sadam1234" },
+      "12345678910111215": { nama: "Nanda", password: "nanda123" },
       "12345678910111214": { nama: "buzel", password: "buzel123" },
       "19830103204102007": { nama: "Detty Aria Sukowati, S.E", password: "dettyaria2007" },
       "199401202025011001": { nama: "Muhamad Dwi Nurul Iman, S.T", password: "muhamaddwi1001" },
@@ -95,6 +94,7 @@
       "200003232025031002": { nama: "Miftahudin, S.Kom", password: "miftahudin1002" },
       "197909172025022002": { nama: "Erly Enstin, S.T", password: "erly2002" },
       "200108312025072001": { nama: "Ananda Ratasya Virgiani", password: "ananda2001" },
+      "200108312025072001": { nama: "latif", password: "latif2001" },
     };
 
     form.addEventListener("submit", function (e) {
@@ -107,11 +107,12 @@
       if (akun && akun.password === password) {
         localStorage.setItem("nip", nip);
         localStorage.setItem("nama", akun.nama);
-        window.location.href = "index.html";
+        window.location.href = "halaman-data.html";
       } else {
         errorMsg.textContent = "❌ NIP atau password salah.";
       }
     });
   </script>
-</body>
-</html>
+
+
+</body></html>
