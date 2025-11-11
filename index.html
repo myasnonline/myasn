@@ -168,11 +168,11 @@
             transform: scale(1);
         }
         
-        
+/*         
         .interaction-container:hover .menu-item:nth-child(1) { 
             top: calc(70% - 90px); 
             left: calc(80% - 100px); 
-        }
+        } */
 
         /* .interaction-container:hover .menu-item:nth-child(2) { 
             top: calc(50% - 140px); 
@@ -232,58 +232,97 @@
     font-weight: 700; 
 }
 
-/* --- Tambahan agar responsif di HP --- */
+
+@media (min-width: 769px) {
+  .interaction-container {
+    margin-top: -40px;
+    transition: transform 0.4s ease;
+  }
+
+  .interaction-container:hover .menu-item{
+    transform: translateY(-40px); 
+  }
+}
+
+
 @media (max-width: 768px) {
-  .welcome-text h2 {
-    font-size: 20px;
+  .interaction-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: auto;
+    margin-top: 40px;
+    position: relative;
   }
 
-  .asn-digital-badge {
-    font-size: 20px;
-    padding: 4px 8px;
+  .circular-menu {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-20px);
+    transition: all 0.5s ease;
   }
 
-  .welcome-text p {
-    font-size: 14px;
+  .circular-menu.show-menu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
   }
 
-  .welcome-text button {
-    font-size: 13px;
-    padding: 8px 20px;
+  .menu-item {
+    width: 85%;
+    max-width: 350px;
+    height: auto;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.97);
+    color: #007bff;
+    font-weight: 600;
+    font-size: 17px;
+    padding: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    transition: background 0.3s;
+  }
+
+  .menu-item:hover {
+    background-color: #eaf3ff;
   }
 
   .bkn-logo-center {
     width: 130px;
     height: 130px;
+    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.5s ease;
+    z-index: 5;
   }
 
   .bkn-logo-center img {
-    width: 80px;
+    width: 85px;
   }
 
-  .menu-item {
-    width: 90px;
-    height: 90px;
-    font-size: 12px;
-  }
-
-  .menu-item i {
-    font-size: 20px;
-  }
-
-  .interaction-container {
-    width: 120px;
-    height: 120px;
-  }
-
-  .welcome-text {
-    margin-bottom: 30px;
-  }
-
-  .content-wrapper {
-    max-width: 95%;
+  .bkn-logo-center.hide-logo {
+    transform: translateY(120px);
+    opacity: 0;
   }
 }
+
 
 @media (max-width: 480px) {
   .welcome-text h2 {
@@ -326,7 +365,10 @@
   .privacy-terms {
     font-size: 10px;
   }
-}
+
+
+
+    }
 
 
     </style>
@@ -391,6 +433,17 @@
             welcomeText.style.transform = 'translateY(0)';
             welcomeText.style.pointerEvents = 'auto';
         });
+
+
+            const bknLogo = document.querySelector('.bkn-logo-center');
+            const circularMenu = document.querySelector('.circular-menu');
+
+            if (window.innerWidth <= 768) {
+                bknLogo.addEventListener('click', () => {
+                bknLogo.classList.toggle('hide-logo');
+                circularMenu.classList.toggle('show-menu');
+                });
+            }
     </script>
 
 </body>
