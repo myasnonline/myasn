@@ -197,6 +197,39 @@
             z-index: 10;
         }
 
+
+            .welcome-text h2 {
+                font-size: 2.5em;
+                font-weight: 300;
+                margin-bottom: 5px;
+                line-height: 1.2;
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                gap: 10px; 
+            }
+
+            .asn-digital-badge {
+                background-color: rgba(250, 250, 250, 0.774);
+                padding: 5px 15px;
+                border-radius: 10px; 
+                display: inline-flex; 
+                align-items: center;
+                gap: 8px; 
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+            }
+
+            .asn-digital-badge .asn {
+                color: #e3342f; 
+                font-weight: 700; 
+            }
+
+            .asn-digital-badge .digital {
+                color: #3b82f6; 
+                font-weight: 700; 
+            }
+
+
     </style>
 </head>
 <body>
@@ -206,11 +239,13 @@
         
         <div class="content-wrapper">
             
-            <div id="welcomeText" class="welcome-text">
-                <h2>Selamat Datang di <span class="asn-digital">ASN DIGITAL</span></h2>
-                <p>Platform Digital Manajemen ASN Terpadu</p>
-                <button>Badan Kepegawaian Negara</button>
-            </div>
+           <div class="welcome-container">
+    <div id="welcomeText" class="welcome-text">
+        <h2>Selamat Datang di <span class="asn-digital-badge"><span class="asn">ASN</span> <span class="digital">DIGITAL</span></span></h2>
+        <p>Platform Digital Manajemen ASN Terpadu</p>
+        <button>Badan Kepegawaian Negara</button>
+    </div>
+</div>
 
             <div id="interactionContainer" class="interaction-container">
                 
